@@ -1,0 +1,4 @@
+[submodule "lib/aoc"]
+	path = lib/aoc
+	url = git@github.com:FaustVX/adventofcode.git
+	branch = main
