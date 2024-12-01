@@ -23,7 +23,15 @@ public class Solution : ISolver //, IDisplay
 
     public object PartTwo(ReadOnlyMemory<char> input)
     {
-        return 0;
+        var location = input.Span.ParseToArray<Location>();
+        var r = (stackalloc int[location.Length]);
+        for (int i = 0; i < location.Length; i++)
+            r[i] = location[i].Right;
+        r.Sort();
+        var score = 0;
+        for (int i = 0; i < location.Length; i++)
+            score += System.MemoryExtensions.Count(r, location[i].Left) * location[i].Left;
+        return score;
     }
 }
 
