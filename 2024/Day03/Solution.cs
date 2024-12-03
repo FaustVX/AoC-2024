@@ -8,13 +8,12 @@ public partial class Solution : ISolver //, IDisplay
     {
         var sum = 0;
         var ranges = (stackalloc Range[2]);
-        foreach (var line in input.Span.EnumerateLines())
-            foreach (var (i, l) in ParseMul.EnumerateMatches(line))
-            {
-                var match = line.Slice(i, l)[4..^1];
-                match.Split(ranges, ",");
-                sum += int.Parse(match[ranges[0]]) * int.Parse(match[ranges[1]]);
-            }
+        foreach (var (i, l) in ParseMul.EnumerateMatches(input.Span))
+        {
+            var match = input.Span.Slice(i, l)[4..^1];
+            match.Split(ranges, ",");
+            sum += int.Parse(match[ranges[0]]) * int.Parse(match[ranges[1]]);
+        }
         return sum;
     }
 
@@ -23,23 +22,20 @@ public partial class Solution : ISolver //, IDisplay
         var isEnabled = true;
         var sum = 0;
         var ranges = (stackalloc Range[2]);
-        foreach (var line in input.Span.EnumerateLines())
-            foreach (var (i, l) in ParseMulDo.EnumerateMatches(line))
+        foreach (var (i, l) in ParseMulDo.EnumerateMatches(input.Span))
+            switch (input.Span.Slice(i, l))
             {
-                switch (line.Slice(i, l))
-                {
-                    case "do()":
-                        isEnabled = true;
-                        break;
-                    case "don't()":
-                        isEnabled = false;
-                        break;
-                    case var match when isEnabled:
-                        match = match[4..^1];
-                        match.Split(ranges, ",");
-                        sum += int.Parse(match[ranges[0]]) * int.Parse(match[ranges[1]]);
-                        break;
-                }
+                case "do()":
+                    isEnabled = true;
+                    break;
+                case "don't()":
+                    isEnabled = false;
+                    break;
+                case var match when isEnabled:
+                    match = match[4..^1];
+                    match.Split(ranges, ",");
+                    sum += int.Parse(match[ranges[0]]) * int.Parse(match[ranges[1]]);
+                    break;
             }
         return sum;
     }
