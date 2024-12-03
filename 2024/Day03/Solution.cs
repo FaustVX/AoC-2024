@@ -20,11 +20,35 @@ public partial class Solution : ISolver //, IDisplay
 
     public object PartTwo(ReadOnlyMemory<char> input)
     {
-        return 0;
+        var isEnabled = true;
+        var sum = 0;
+        var ranges = (stackalloc Range[2]);
+        foreach (var line in input.Span.EnumerateLines())
+            foreach (var (i, l) in ParseMulDo.EnumerateMatches(line))
+            {
+                switch (line.Slice(i, l))
+                {
+                    case "do()":
+                        isEnabled = true;
+                        break;
+                    case "don't()":
+                        isEnabled = false;
+                        break;
+                    case var match when isEnabled:
+                        match = match[4..^1];
+                        match.Split(ranges, ",");
+                        sum += int.Parse(match[ranges[0]]) * int.Parse(match[ranges[1]]);
+                        break;
+                }
+            }
+        return sum;
     }
 
     [GeneratedRegex("""mul\((\d+),(\d+)\)""")]
     static partial Regex ParseMul { get; }
+
+    [GeneratedRegex("""mul\((\d+),(\d+)\)|do\(\)|don't\(\)""")]
+    static partial Regex ParseMulDo { get; }
 }
 
 file static class Ext
