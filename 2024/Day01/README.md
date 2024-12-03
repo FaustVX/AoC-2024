@@ -1,6 +1,6 @@
 original source: [https://adventofcode.com/2024/day/1](https://adventofcode.com/2024/day/1)
 
-Reddit submission megathread: https://www.reddit.com/r/adventofcode/comments/
+Reddit submission megathread: https://www.reddit.com/r/adventofcode/comments/1h3vp6n/2024_day_1_solutions/
 ## --- Day 1: Historian Hysteria ---
 The _Chief Historian_ is always present for the big Christmas sleigh launch, but nobody has seen him in months! Last anyone heard, he was visiting locations that are historically significant to the North Pole; a group of Senior Historians has asked you to accompany them as they check the places they think he was most likely to visit.
 

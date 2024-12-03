@@ -1,6 +1,6 @@
 original source: [https://adventofcode.com/2024/day/2](https://adventofcode.com/2024/day/2)
 
-Reddit submission megathread: https://www.reddit.com/r/adventofcode/comments/
+Reddit submission megathread: https://www.reddit.com/r/adventofcode/comments/1h4ncyr/2024_day_2_solutions/
 ## --- Day 2: Red-Nosed Reports ---
 Fortunately, the first location The Historians want to search isn't a long walk from the Chief Historian's office.
 

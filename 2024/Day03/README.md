@@ -1,6 +1,6 @@
 original source: [https://adventofcode.com/2024/day/3](https://adventofcode.com/2024/day/3)
 
-Reddit submission megathread: https://www.reddit.com/r/adventofcode/comments/
+Reddit submission megathread: https://www.reddit.com/r/adventofcode/comments/1h5frsp/2024_day_3_solutions/
 ## --- Day 3: Mull It Over ---
 "Our computers are having issues, so I have no idea if we have any Chief Historians in stock! You're welcome to check the warehouse, though," says the mildly flustered shopkeeper at the [North Pole Toboggan Rental Shop](/2020/day/2). The Historians head out to take a look.
 
