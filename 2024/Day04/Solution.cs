@@ -76,6 +76,49 @@ public class Solution : ISolver //, IDisplay
 
     public object PartTwo(ReadOnlyMemory<char> input)
     {
-        return 0;
+        var size = Globals.IsTestInput ? 10 : 140;
+        var board = input.Span.AsSpan2D(size, size + 1)[.., ..^1];
+        ReadOnlySpan<Func<int, int, ReadOnlySpan2D<char>, ReadOnlySpan<char>, bool>> conditions =
+        [
+            CheckDiagonal1,
+            CheckDiagonal2,
+        ];
+
+        ReadOnlySpan<char> mas = ['M', 'A', 'S'];
+        ReadOnlySpan<char> sam = ['S', 'A', 'M'];
+
+        var count = 0;
+        for (int x = 1; x < board.Width - 1; x++)
+            for (int y = 1; y < board.Height - 1; y++)
+                if (board[x, y] is 'A'
+                    && (CheckDiagonal1(x, y, board, mas) || CheckDiagonal1(x, y, board, sam))
+                    && (CheckDiagonal2(x, y, board, mas) || CheckDiagonal2(x, y, board, sam)))
+                    count++;
+
+        return count;
+
+        static bool CheckDiagonal1(int x, int y, ReadOnlySpan2D<char> board, ReadOnlySpan<char> xmas)
+        {
+            if (x >= board.Width - 1 || y >= board.Height - 1)
+                return false;
+            x--;
+            y--;
+            for (int i = 0; i < 3; i++)
+                if (board[x + i, y + i] != xmas[i])
+                    return false;
+            return true;
+        }
+
+        static bool CheckDiagonal2(int x, int y, ReadOnlySpan2D<char> board, ReadOnlySpan<char> xmas)
+        {
+            if (x < 1 || y >= board.Width - 1)
+                return false;
+            x++;
+            y--;
+            for (int i = 0; i < 3; i++)
+                if (board[x - i, y + i] != xmas[i])
+                    return false;
+            return true;
+        }
     }
 }
