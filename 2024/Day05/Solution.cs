@@ -30,7 +30,31 @@ public class Solution : ISolver //, IDisplay
 
     public object PartTwo(ReadOnlyMemory<char> input)
     {
-        return 0;
+        var (orders, updates) = input.Span.ParseToArray<Order, Update>();
+        var sum = 0;
+        foreach (var update in updates)
+        {
+            bool isValid = true;
+            var span = Update.GetSpan(in update);
+            foreach (var (f, s) in orders)
+                if ((span.IndexOf(f), span.IndexOf(s)) is (>= 0 and var a, >= 0 and var b) && a > b)
+                {
+                    isValid = false;
+                    break;
+                }
+            if (!isValid)
+            {
+Order:
+                foreach (var (f, s) in orders)
+                    if ((span.IndexOf(f), span.IndexOf(s)) is (>= 0 and var a, >= 0 and var b) && a > b)
+                    {
+                        (span[a], span[b]) = (span[b], span[a]);
+                        goto Order;
+                    }
+                sum += update.GetMiddle();
+            }
+        }
+        return sum;
     }
 }
 
@@ -57,7 +81,7 @@ struct Update : ISpanParsable<Update>
     public static ReadOnlySpan<int> GetROSpan(ref readonly Update buffer)
     => GetSpan(in buffer);
 
-    private static Span<int> GetSpan(ref readonly Update buffer)
+    public static Span<int> GetSpan(ref readonly Update buffer)
     => MemoryMarshal.CreateSpan(ref Unsafe.AsRef(in buffer[1]), buffer[0]);
 
     public readonly int GetMiddle()
