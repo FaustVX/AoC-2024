@@ -8,29 +8,31 @@ public class Solution : ISolver //, IDisplay
 {
     public object PartOne(ReadOnlyMemory<char> input)
     {
-        var location = input.Span.ParseToArray<Location>();
-        var l = (stackalloc int[location.Length]);
-        var r = (stackalloc int[location.Length]);
-        for (int i = 0; i < location.Length; i++)
-            (l[i], r[i]) = location[i];
+        var locations = (stackalloc Location[1000]);
+        input.Span.ParseToArray<Location>(ref locations);
+        var l = (stackalloc int[locations.Length]);
+        var r = (stackalloc int[locations.Length]);
+        for (int i = 0; i < locations.Length; i++)
+            (l[i], r[i]) = locations[i];
         l.Sort();
         r.Sort();
         var distances = 0;
-        for (int i = 0; i < location.Length; i++)
+        for (int i = 0; i < locations.Length; i++)
             distances += Math.Abs(l[i] - r[i]);
         return distances;
     }
 
     public object PartTwo(ReadOnlyMemory<char> input)
     {
-        var location = input.Span.ParseToArray<Location>();
-        var r = (stackalloc int[location.Length]);
-        for (int i = 0; i < location.Length; i++)
-            r[i] = location[i].Right;
+        var locations = (stackalloc Location[1000]);
+        input.Span.ParseToArray<Location>(ref locations);
+        var r = (stackalloc int[locations.Length]);
+        for (int i = 0; i < locations.Length; i++)
+            r[i] = locations[i].Right;
         r.Sort();
         var score = 0;
-        for (int i = 0; i < location.Length; i++)
-            score += System.MemoryExtensions.Count(r, location[i].Left) * location[i].Left;
+        for (int i = 0; i < locations.Length; i++)
+            score += System.MemoryExtensions.Count(r, locations[i].Left) * locations[i].Left;
         return score;
     }
 }

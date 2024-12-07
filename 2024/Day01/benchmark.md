@@ -8,7 +8,7 @@ BenchmarkDotNet v0.14.0, Windows 11 (10.0.26100.2314)
 
 
 ```
-| Method  | Mean     | Error    | StdDev   | Gen0   | Allocated |
-|-------- |---------:|---------:|---------:|-------:|----------:|
-| PartOne | 59.97 μs | 0.895 μs | 0.793 μs | 0.6104 |   7.86 KB |
-| PartTwo | 86.44 μs | 0.604 μs | 0.565 μs | 0.6104 |   7.86 KB |
+| Method  | Mean     | Error    | StdDev   | Allocated |
+|-------- |---------:|---------:|---------:|----------:|
+| PartOne | 63.23 μs | 0.588 μs | 0.459 μs |      24 B |
+| PartTwo | 93.45 μs | 1.674 μs | 1.861 μs |      24 B |

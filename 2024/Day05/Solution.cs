@@ -10,7 +10,9 @@ public class Solution : ISolver //, IDisplay
 {
     public object PartOne(ReadOnlyMemory<char> input)
     {
-        var (orders, updates) = input.Span.ParseToArray<Order, Update>();
+        var orders = (stackalloc Order[1200]);
+        var updates = (stackalloc Update[250]);
+        input.Span.ParseToArray(ref orders, ref updates);
         var sum = 0;
         foreach (var update in updates)
         {
@@ -30,7 +32,9 @@ public class Solution : ISolver //, IDisplay
 
     public object PartTwo(ReadOnlyMemory<char> input)
     {
-        var (orders, updates) = input.Span.ParseToArray<Order, Update>();
+        var orders = (stackalloc Order[1200]);
+        var updates = (stackalloc Update[250]);
+        input.Span.ParseToArray(ref orders, ref updates);
         var sum = 0;
         foreach (var update in updates)
         {
