@@ -1,16 +1,14 @@
 ```
 
-BenchmarkDotNet v0.14.0, Windows 11 (10.0.22631.4460/23H2/2023Update/SunValley3)
+BenchmarkDotNet v0.14.0, Windows 11 (10.0.26100.2314)
 12th Gen Intel Core i7-12700H, 1 CPU, 20 logical and 14 physical cores
 .NET SDK 9.0.100
-  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
-  ShortRun : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
+  [Host]     : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
+  DefaultJob : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX2
 
-Job=ShortRun  IterationCount=3  LaunchCount=1  
-WarmupCount=3  
 
 ```
-| Method  | Mean     | Error     | StdDev   | Allocated |
-|-------- |---------:|----------:|---------:|----------:|
-| PartOne | 132.8 μs | 333.77 μs | 18.30 μs |      24 B |
-| PartTwo | 136.0 μs |  14.99 μs |  0.82 μs |      24 B |
+| Method  | Mean     | Error   | StdDev  | Allocated |
+|-------- |---------:|--------:|--------:|----------:|
+| PartOne | 103.5 μs | 0.69 μs | 0.64 μs |      24 B |
+| PartTwo | 129.7 μs | 0.76 μs | 0.71 μs |      24 B |
